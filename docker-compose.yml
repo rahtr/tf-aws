@@ -1,0 +1,31 @@
+version: '3.1'
+services:
+  backend:
+    image: maven:3.6.3-jdk-8
+    command: mvn spring-boot:run
+    depends_on:
+      - db
+    environment:
+      MYSQL_HOST: db
+      MYSQL_USERNAME: exampleuser
+      MYSQL_PASSWORD: examplepass
+      MYSQL_DB: exampledb
+    ports:
+      - 5000:5000
+      - 5005:5005
+    volumes:
+      - .:/usr/src/mymaven:rw
+    working_dir: /usr/src/mymaven
+  db:
+    image: mysql:8.0.25
+    environment:
+      MYSQL_ROOT_PASSWORD: examplerootpassword
+      MYSQL_DATABASE: exampledb
+      MYSQL_USER: exampleuser
+      MYSQL_PASSWORD: examplepass
+    ports:
+      - 3306:3306
+  adminer:
+    image: adminer
+    ports:
+      - 8080:8080

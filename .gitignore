@@ -1,0 +1,10 @@
+/.idea/
+/.mvn/
+secret-message-api.iml
+### Terraform ###
+# Local .terraform directories
+**/.terraform/*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
